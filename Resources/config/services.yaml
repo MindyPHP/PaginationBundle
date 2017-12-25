@@ -1,0 +1,33 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    _instanceof:
+        Mindy\Pagination\DataSource\DataSourceInterface:
+            tags: ['pagination.data_source']
+
+        Mindy\Template\Library\LibraryInterface:
+            public: true
+            tags: ['template.library']
+
+    Mindy\Bundle\PaginationBundle\:
+        resource: '../../*'
+        exclude: '../../{Tests,vendor}'
+
+    Mindy\Pagination\Handler\RequestPaginationHandler:
+        public: true
+
+    Mindy\Pagination\DataSource\ArrayDataSource:
+        public: true
+
+    Mindy\Pagination\DataSource\QuerySetDataSource:
+        public: true
+
+    Mindy\Pagination\PaginationFactory:
+        public: true
+
+    pagination.factory:
+        alias: Mindy\Pagination\PaginationFactory
+        public: true

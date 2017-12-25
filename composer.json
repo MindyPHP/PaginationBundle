@@ -12,15 +12,27 @@
             "email": "max@studio107.ru"
         }
     ],
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
     "require": {
-        "php": ">=5.5.9",
-        "mindy/pagination": "~3.0",
-        "symfony/http-kernel": "~3.0",
-        "symfony/config": "~3.0",
-        "symfony/dependency-injection": "~3.0"
+        "php": ">=7.0",
+        "mindy/pagination": "~4.0",
+        "mindy/template": ">=4.0",
+        "symfony/config": "~3.0|~4.0",
+        "symfony/dependency-injection": "~3.0|~4.0",
+        "symfony/http-kernel": "~3.0|~4.0",
+        "symfony/yaml": "~3.0|~4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "mindy/template-bundle": ">=4.0",
+        "phpunit/phpunit": "^6.5",
+        "symfony/framework-bundle": "^3.4",
+        "symfony/routing": "~3.0|~4.0",
+        "symfony/var-dumper": "^3.4"
     },
     "autoload": {
         "psr-4": {
@@ -30,10 +42,9 @@
             "/Tests/"
         ]
     },
-    "minimum-stability": "dev",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.6.8-dev"
+    "autoload-dev": {
+        "psr-4": {
+            "Mindy\\Bundle\\PaginationBundle\\Tests\\": ""
         }
     }
 }
