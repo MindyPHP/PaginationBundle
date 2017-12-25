@@ -1,7 +1,7 @@
 # Pagination Bundle
 
 [![Build Status](https://travis-ci.org/MindyPHP/PaginationBundle.svg?branch=master)](https://travis-ci.org/MindyPHP/PaginationBundle)
-[![Coverage Status](https://img.shields.io/coveralls/MindyPHP/PaginationBundle.svg)](https://coveralls.io/r/MindyPHP/PaginationBundle)
+[![codecov](https://codecov.io/gh/MindyPHP/SitemapBundle/branch/master/graph/badge.svg)](https://codecov.io/gh/MindyPHP/SitemapBundle)
 [![Latest Stable Version](https://poser.pugx.org/mindy/pagination-bundle/v/stable.svg)](https://packagist.org/packages/mindy/pagination-bundle)
 [![Total Downloads](https://poser.pugx.org/mindy/pagination-bundle/downloads.svg)](https://packagist.org/packages/mindy/pagination-bundle)
 
