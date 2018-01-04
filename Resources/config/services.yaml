@@ -21,9 +21,11 @@ services:
 
     Mindy\Pagination\DataSource\ArrayDataSource:
         public: true
+        tags: ['pagination.data_source']
 
     Mindy\Pagination\DataSource\QuerySetDataSource:
         public: true
+        tags: ['pagination.data_source']
 
     Mindy\Pagination\PaginationFactory:
         public: true
