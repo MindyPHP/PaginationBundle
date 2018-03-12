@@ -21,6 +21,7 @@ services:
     pagination.handler.request:
         class: '%pagination.handler.request.class%'
         public: true
+        arguments: ['@request_stack', '@router']
     Mindy\Pagination\Handler\RequestPaginationHandler: '@pagination.handler.request'
 
     pagination.factory:
@@ -31,5 +32,6 @@ services:
     pagination.twig.extension:
         class: '%pagination.twig.extension.class%'
         public: false
+        arguments: ['@twig']
         tags:
             - { name: 'twig.extension' }
