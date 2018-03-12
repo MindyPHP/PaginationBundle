@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Mindy\Bundle\PaginationBundle\DependencyInjection\Compiler;
 
-use Mindy\Pagination\PaginationFactory;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -26,11 +25,11 @@ class PaginationPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (false === $container->hasDefinition(PaginationFactory::class)) {
+        if (false === $container->hasDefinition('pagination.factory')) {
             return;
         }
 
-        $definition = $container->getDefinition(PaginationFactory::class);
+        $definition = $container->getDefinition('pagination.factory');
         foreach ($container->findTaggedServiceIds('pagination.data_source') as $id => $params) {
             $definition->addMethodCall('addDataSource', [new Reference($id)]);
         }

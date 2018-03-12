@@ -1,35 +1,35 @@
+parameters:
+    pagination.twig.extension.class: Mindy\Bundle\PaginationBundle\Twig\PaginationExtension
+    pagination.factory.class: Mindy\Pagination\PaginationFactory
+    pagination.handler.request.class: Mindy\Pagination\Handler\RequestPaginationHandler
+    pagination.data_source.array.class: Mindy\Pagination\DataSource\ArrayDataSource
+    pagination.data_source.query_set.class: Mindy\Pagination\DataSource\QuerySetDataSource
+
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: false
-
-    _instanceof:
-        Mindy\Pagination\DataSource\DataSourceInterface:
-            tags: ['pagination.data_source']
-
-        Mindy\Template\Library\LibraryInterface:
-            public: true
-            tags: ['template.library']
-
-    Mindy\Bundle\PaginationBundle\:
-        resource: '../../*'
-        exclude: '../../{Tests,vendor}'
-
-    Mindy\Pagination\Handler\RequestPaginationHandler:
-        public: true
-
-    Mindy\Pagination\DataSource\ArrayDataSource:
+    pagination.data_source.array:
+        class: '%pagination.data_source.array.class%'
         public: true
         tags: ['pagination.data_source']
+    Mindy\Pagination\DataSource\ArrayDataSource: '@pagination.data_source.array'
 
-    Mindy\Pagination\DataSource\QuerySetDataSource:
+    pagination.data_source.query_set:
+        class: '%pagination.data_source.query_set.class%'
         public: true
         tags: ['pagination.data_source']
+    Mindy\Pagination\DataSource\QuerySetDataSource: '@pagination.data_source.query_set'
 
-    Mindy\Pagination\PaginationFactory:
+    pagination.handler.request:
+        class: '%pagination.handler.request.class%'
         public: true
+    Mindy\Pagination\Handler\RequestPaginationHandler: '@pagination.handler.request'
 
     pagination.factory:
-        alias: Mindy\Pagination\PaginationFactory
+        class: '%pagination.factory.class%'
         public: true
+    Mindy\Pagination\PaginationFactory: '@pagination.factory'
+
+    pagination.twig.extension:
+        class: '%pagination.twig.extension.class%'
+        public: false
+        tags:
+            - { name: 'twig.extension' }

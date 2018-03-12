@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Mindy\Bundle\PaginationBundle\Tests;
 
 use Mindy\Bundle\PaginationBundle\PaginationBundle;
-use Mindy\Bundle\TemplateBundle\TemplateBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 
@@ -28,7 +28,7 @@ class Kernel extends BaseKernel
     {
         return [
             new FrameworkBundle(),
-            new TemplateBundle(),
+            new TwigBundle(),
             new PaginationBundle(),
         ];
     }

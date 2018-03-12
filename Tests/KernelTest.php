@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace Mindy\Bundle\PaginationBundle\Tests;
 
-use Mindy\Bundle\PaginationBundle\Library\PaginationLibrary;
 use Mindy\Pagination\DataSource\ArrayDataSource;
 use Mindy\Pagination\DataSource\QuerySetDataSource;
 use Mindy\Pagination\Handler\RequestPaginationHandler;
 use Mindy\Pagination\PaginationFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
+use Twig_ExtensionInterface;
 
 class KernelTest extends KernelTestCase
 {
@@ -38,11 +38,18 @@ class KernelTest extends KernelTestCase
 
         $container = $kernel->getContainer();
 
+        $this->assertFalse($container->has('pagination.twig.extension'));
+
         $this->assertTrue($container->has('pagination.factory'));
-        $this->assertTrue($container->has(PaginationFactory::class));
-        $this->assertTrue($container->has(ArrayDataSource::class));
-        $this->assertTrue($container->has(QuerySetDataSource::class));
-        $this->assertTrue($container->has(RequestPaginationHandler::class));
-        $this->assertTrue($container->has(PaginationLibrary::class));
+        $this->assertFalse($container->has(PaginationFactory::class));
+
+        $this->assertTrue($container->has('pagination.data_source.array'));
+        $this->assertFalse($container->has(ArrayDataSource::class));
+
+        $this->assertTrue($container->has('pagination.data_source.query_set'));
+        $this->assertFalse($container->has(QuerySetDataSource::class));
+
+        $this->assertTrue($container->has('pagination.handler.request'));
+        $this->assertFalse($container->has(RequestPaginationHandler::class));
     }
 }

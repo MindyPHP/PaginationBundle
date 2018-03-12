@@ -12,9 +12,8 @@ declare(strict_types=1);
 
 namespace Mindy\Bundle\PaginationBundle\Utils;
 
-use Mindy\Pagination\Handler\RequestPaginationHandler;
+use Mindy\Pagination\Handler\PaginationHandlerInterface;
 use Mindy\Pagination\Pagination;
-use Mindy\Pagination\PaginationFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,19 +26,22 @@ trait PaginationTrait
     /**
      * @param $source
      * @param array $parameters
+     * @param PaginationHandlerInterface|null $handler
      *
      * @return Pagination
      */
-    protected function createPagination($source, array $parameters = [])
+    protected function createPagination($source, array $parameters = [], ?PaginationHandlerInterface $handler = null)
     {
-        if ($this->container->has(PaginationFactory::class)) {
-            $handler = $this->container->get(RequestPaginationHandler::class);
-
-            return $this
-                ->container
-                ->get(PaginationFactory::class)
-                ->createPagination($source, $parameters, $handler);
+        if (false === $this->container->has('pagination.factory')) {
+            throw new \LogicException('You can not use the "createPagination" method if the Pagination Component are not available.');
         }
-        throw new \LogicException('You can not use the "createPagination" method if the Pagination Component are not available.');
+
+        if (is_null($handler)) {
+            $handler = $this->container->get('pagination.handler.request');
+        }
+
+        $factory = $this->container->get('pagination.factory');
+
+        return $factory->createPagination($source, $parameters, $handler);
     }
 }
