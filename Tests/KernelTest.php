@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 /*
- * Studio 107 (c) 2017 Maxim Falaleev
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -17,7 +15,6 @@ use Mindy\Pagination\Handler\RequestPaginationHandler;
 use Mindy\Pagination\PaginationFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
-use Twig_ExtensionInterface;
 
 class KernelTest extends KernelTestCase
 {

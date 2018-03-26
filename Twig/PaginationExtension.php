@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 /*
- * Studio 107 (c) 2018 Maxim Falaleev
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -50,7 +48,7 @@ class PaginationExtension extends AbstractExtension
      *
      * @return string
      */
-    public function doRenderPagination(PaginationView $view, $template = 'pagination/default.html')
+    public function doRenderPagination(PaginationView $view, $template = 'pagination/default.html.twig')
     {
         if (null === $this->twig) {
             throw new \LogicException('Template component not injected to PaginationLibrary');
