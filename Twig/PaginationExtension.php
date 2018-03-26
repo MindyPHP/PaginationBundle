@@ -48,7 +48,7 @@ class PaginationExtension extends AbstractExtension
      *
      * @return string
      */
-    public function doRenderPagination(PaginationView $view, $template = 'pagination/default.html.twig')
+    public function doRenderPagination(PaginationView $view, $template = '@Pagination/pagination/default.html.twig')
     {
         if (null === $this->twig) {
             throw new \LogicException('Template component not injected to PaginationLibrary');
